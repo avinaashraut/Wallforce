@@ -10,20 +10,11 @@ header{
 margin-top:20px;
 }
 
-header p{
-color:#aaa;
-font-size:14px;
-}
-
 .controls{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:10px;
-margin-top:20px;
-}
-
-.actions{
 margin-top:20px;
 }
 
@@ -34,21 +25,44 @@ color:white;
 border:1px solid #444;
 }
 
-canvas{
+.preview-section{
+max-width:600px;
+margin:auto;
+margin-top:20px;
+}
+
+.main-preview canvas{
 width:100%;
-max-width:400px;
-margin-top:20px;
+border-radius:6px;
 }
 
-#gallery{
-display:grid;
-grid-template-columns:repeat(auto-fill,90px);
-gap:8px;
-margin-top:20px;
+.thumbnail-row{
+display:flex;
+gap:10px;
+overflow-x:auto;
+margin-top:15px;
 }
 
-#gallery img{
+.thumbnail-row canvas{
 width:90px;
+border-radius:4px;
+cursor:pointer;
+}
+
+.bulk-section{
+margin-top:40px;
+}
+
+#bulkPreview{
+display:flex;
+gap:10px;
+margin-top:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+#bulkPreview img{
+width:80px;
 border-radius:4px;
 }
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Infinity Wallpaper</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wallforce – Wallpaper Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 </head>
@@ -10,11 +10,8 @@
 <body>
 
 <header>
-<h1>Infinity Wallpaper</h1>
-<p>
-Hello visitor, welcome to my small wallpaper engine.<br>
-Generate wallpapers in different styles.
-</p>
+<h1>Wallforce</h1>
+<p>Hello visitor, welcome to my wallpaper engine. Generate wallpapers instantly.</p>
 </header>
 
 <div class="controls">
@@ -40,34 +37,43 @@ Generate wallpapers in different styles.
 <option value="4k">4K</option>
 </select>
 
-<select id="amount">
-<option>1</option>
-<option>5</option>
-<option>10</option>
-<option>25</option>
-<option>50</option>
+<button onclick="generatePreviewSet()">Generate</button>
+
+</div>
+
+<div class="preview-section">
+
+<div class="main-preview">
+<canvas id="mainCanvas"></canvas>
+<button id="downloadMain">Download</button>
+</div>
+
+<div id="thumbRow" class="thumbnail-row"></div>
+
+</div>
+
+<div class="bulk-section">
+
+<h3>Bulk Generator</h3>
+
+<select id="bulkAmount">
 <option>100</option>
+<option>250</option>
 <option>500</option>
 <option>1000</option>
 </select>
 
-</div>
-
-<div class="actions">
-<button onclick="generateBatch()">Generate</button>
-<button onclick="surprise()">Surprise Me</button>
-<button onclick="downloadZip()">Download ZIP</button>
-</div>
+<button onclick="startBulk()">Start Bulk</button>
 
 <div id="progressContainer">
 <div id="progressBar"></div>
 </div>
 
-<div class="workspace">
-<canvas id="canvas"></canvas>
-</div>
+<div id="bulkPreview"></div>
 
-<div id="gallery"></div>
+<button id="downloadZipBtn" onclick="downloadZip()" disabled>Download ZIP</button>
+
+</div>
 
 <script src="app.js"></script>
 
