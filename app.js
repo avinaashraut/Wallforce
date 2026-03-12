@@ -125,6 +125,7 @@ thumbRow.innerHTML=""
 
 generate()
 
+mainCtx.clearRect(0,0,mainCanvas.width,mainCanvas.height)
 mainCtx.drawImage(tempCanvas,0,0)
 
 for(let i=0;i<8;i++){
