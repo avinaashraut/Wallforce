@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Wallforce – Wallpaper Generator</title>
+<title>Wallforce</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 </head>
 
 <body>
 
-<header>
 <h1>Wallforce</h1>
-<p>Hello visitor, welcome to my wallpaper engine. Generate wallpapers instantly.</p>
-</header>
+<p>Simple wallpaper generator</p>
 
 <div class="controls">
 
@@ -21,40 +22,29 @@
 <option value="desktop">Desktop</option>
 </select>
 
-<select id="engine">
-<option value="abstract">Abstract</option>
-<option value="terrain">Landscape</option>
-<option value="cosmic">Cosmic</option>
-<option value="flow">Flow</option>
-<option value="waves">Waves</option>
-<option value="brush">Brush</option>
-<option value="all">All Categories</option>
-</select>
-
 <select id="resolution">
 <option value="hd">HD</option>
 <option value="2k">2K</option>
 <option value="4k">4K</option>
 </select>
 
-<button onclick="generatePreviewSet()">Generate</button>
+<button id="generateBtn">Generate</button>
 
 </div>
 
-<div class="preview-section">
+<div class="preview">
 
-<div class="main-preview">
 <canvas id="mainCanvas"></canvas>
-<button id="downloadMain">Download</button>
-</div>
 
-<div id="thumbRow" class="thumbnail-row"></div>
+<button id="downloadBtn">Download</button>
 
 </div>
 
-<div class="bulk-section">
+<div id="thumbRow"></div>
 
-<h3>Bulk Generator</h3>
+<hr>
+
+<h2>Bulk Generator</h2>
 
 <select id="bulkAmount">
 <option>100</option>
@@ -63,17 +53,15 @@
 <option>1000</option>
 </select>
 
-<button onclick="startBulk()">Start Bulk</button>
+<button id="bulkBtn">Start Bulk</button>
 
-<div id="progressContainer">
+<div id="progressBarContainer">
 <div id="progressBar"></div>
 </div>
 
 <div id="bulkPreview"></div>
 
-<button id="downloadZipBtn" onclick="downloadZip()" disabled>Download ZIP</button>
-
-</div>
+<button id="downloadZipBtn" disabled>Download ZIP</button>
 
 <script src="app.js"></script>
 

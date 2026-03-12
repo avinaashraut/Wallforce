@@ -6,22 +6,10 @@ const thumbRow = document.getElementById("thumbRow")
 const tempCanvas = document.createElement("canvas")
 const ctx = tempCanvas.getContext("2d")
 
-let zip = new JSZip()
+let zip
 
-function rand(){ return Math.random() }
-
-const PHI = 0.618
-
-function goldenPoint(){
-
-let x = tempCanvas.width * PHI
-let y = tempCanvas.height * PHI
-
-if(Math.random()>0.5) x = tempCanvas.width*(1-PHI)
-if(Math.random()>0.5) y = tempCanvas.height*(1-PHI)
-
-return {x,y}
-
+function rand(){
+return Math.random()
 }
 
 function setupCanvas(){
@@ -62,48 +50,22 @@ ctx.fillRect(0,0,tempCanvas.width,tempCanvas.height)
 
 }
 
-function drawAbstract(){
+function drawWallpaper(){
 
 gradient()
 
-let p=goldenPoint()
-
 ctx.beginPath()
-ctx.arc(p.x,p.y,220,0,Math.PI*2)
+
+ctx.arc(
+tempCanvas.width*0.5,
+tempCanvas.height*0.5,
+200,
+0,
+Math.PI*2
+)
+
 ctx.fillStyle="rgba(255,255,255,0.2)"
 ctx.fill()
-
-}
-
-function draw(){
-
-let engine=document.getElementById("engine").value
-
-if(engine==="all"){
-let engines=["abstract","terrain","cosmic","flow","waves","brush"]
-engine=engines[Math.floor(rand()*engines.length)]
-}
-
-drawAbstract()
-
-}
-
-function cinematic(){
-
-let img = ctx.getImageData(0,0,tempCanvas.width,tempCanvas.height)
-let d = img.data
-
-for(let i=0;i<d.length;i+=4){
-
-let grain = (Math.random()*12)-6
-
-d[i]+=grain
-d[i+1]+=grain
-d[i+2]+=grain
-
-}
-
-ctx.putImageData(img,0,0)
 
 }
 
@@ -111,13 +73,11 @@ function generate(){
 
 ctx.clearRect(0,0,tempCanvas.width,tempCanvas.height)
 
-draw()
-
-cinematic()
+drawWallpaper()
 
 }
 
-function generatePreviewSet(){
+function generatePreview(){
 
 setupCanvas()
 
@@ -125,7 +85,6 @@ thumbRow.innerHTML=""
 
 generate()
 
-mainCtx.clearRect(0,0,mainCanvas.width,mainCanvas.height)
 mainCtx.drawImage(tempCanvas,0,0)
 
 for(let i=0;i<8;i++){
@@ -137,6 +96,7 @@ thumb.width=tempCanvas.width
 thumb.height=tempCanvas.height
 
 let tctx=thumb.getContext("2d")
+
 tctx.drawImage(tempCanvas,0,0)
 
 thumb.onclick=function(){
@@ -152,11 +112,15 @@ thumbRow.appendChild(thumb)
 
 }
 
-document.getElementById("downloadMain").onclick=function(){
+document.getElementById("generateBtn").onclick=generatePreview
+
+document.getElementById("downloadBtn").onclick=function(){
 
 let link=document.createElement("a")
+
 link.download="wallpaper.png"
 link.href=mainCanvas.toDataURL()
+
 link.click()
 
 }
@@ -165,11 +129,9 @@ async function startBulk(){
 
 setupCanvas()
 
-document.getElementById("downloadZipBtn").disabled=true
+zip=new JSZip()
 
 let amount=parseInt(document.getElementById("bulkAmount").value)
-
-zip=new JSZip()
 
 let preview=document.getElementById("bulkPreview")
 preview.innerHTML=""
@@ -208,13 +170,17 @@ document.getElementById("progressBar").style.width=percent+"%"
 
 }
 
-function downloadZip(){
+document.getElementById("bulkBtn").onclick=startBulk
+
+document.getElementById("downloadZipBtn").onclick=function(){
 
 zip.generateAsync({type:"blob"}).then(function(content){
 
 let link=document.createElement("a")
+
 link.href=URL.createObjectURL(content)
 link.download="wallpapers.zip"
+
 link.click()
 
 })
