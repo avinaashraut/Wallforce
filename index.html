@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Infinity Wallpaper</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</head>
+
+<body>
+
+<header>
+<h1>Infinity Wallpaper</h1>
+<p>
+Hello visitor, welcome to my small wallpaper engine.<br>
+Generate wallpapers in different styles.
+</p>
+</header>
+
+<div class="controls">
+
+<select id="device">
+<option value="mobile">Mobile</option>
+<option value="desktop">Desktop</option>
+</select>
+
+<select id="engine">
+<option value="abstract">Abstract</option>
+<option value="terrain">Landscape</option>
+<option value="cosmic">Cosmic</option>
+<option value="flow">Flow</option>
+<option value="waves">Waves</option>
+<option value="brush">Brush</option>
+<option value="all">All Categories</option>
+</select>
+
+<select id="resolution">
+<option value="hd">HD</option>
+<option value="2k">2K</option>
+<option value="4k">4K</option>
+</select>
+
+<select id="amount">
+<option>1</option>
+<option>5</option>
+<option>10</option>
+<option>25</option>
+<option>50</option>
+<option>100</option>
+<option>500</option>
+<option>1000</option>
+</select>
+
+</div>
+
+<div class="actions">
+<button onclick="generateBatch()">Generate</button>
+<button onclick="surprise()">Surprise Me</button>
+<button onclick="downloadZip()">Download ZIP</button>
+</div>
+
+<div id="progressContainer">
+<div id="progressBar"></div>
+</div>
+
+<div class="workspace">
+<canvas id="canvas"></canvas>
+</div>
+
+<div id="gallery"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
